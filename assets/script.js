@@ -21,6 +21,13 @@ formadd.addEventListener("click", (e) => {
   const pages = document.getElementById("pages").value;
   const read = document.getElementById("read").checked;
 
+  const nameInput = document.getElementById("name");
+  if (!name) {
+    nameInput.placeholder = "Name is required!";
+    return;
+  }
+  nameInput.placeholder='';
+
   const book = {
     name,
     author,
