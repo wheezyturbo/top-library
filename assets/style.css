@@ -281,16 +281,18 @@ h3 {
 
 /* CSS for styling cards */
 .cards {
-  display: flex;
-  grid-template-columns: repeat(70%, minmax(auto-fit, 1fr));
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  width: 100%;
 }
 .card {
-  height: 200px;
+  height: 300px;
   border-radius: 8px;
   padding: 16px;
   margin: 10px;
   background-color: #81287b;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color:rgb(221, 214, 214);
 }
 
 .card h1 {
