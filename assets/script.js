@@ -6,9 +6,20 @@ const cards = document.querySelector(".cards");
 
 const books = [];
 
+function book(name, author, pages, read) {
+  this.name = name;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+}
+function addBookToLibrary(title, author, pages, read) {
+  const newBook = new book(title, author, pages, read);
+  books.push(newBook);
+}
+
 add.addEventListener("click", () => {
   modal.classList.toggle("hidden");
-  document.querySelector('.cards').classList.toggle('hidden');
+  document.querySelector(".cards").classList.toggle("hidden");
   add.textContent = add.textContent === "+" ? "-" : "+";
   clearForm();
 });
@@ -26,17 +37,9 @@ formadd.addEventListener("click", (e) => {
     nameInput.placeholder = "Name is required!";
     return;
   }
-  nameInput.placeholder='';
+  nameInput.placeholder = "";
 
-  const book = {
-    name,
-    author,
-    pages,
-    read,
-  };
-
-  books.push(book);
-  console.log(books);
+  addBookToLibrary(name, author, pages, read);
   updateCards();
   clearForm();
 });
@@ -45,14 +48,33 @@ function updateCards() {
   cards.innerHTML = "";
   books.forEach((book, index) => {
     const cardhtml = `<div class="card">
-      <h1>${book.name}</h1>
-      <p>Author: ${book.author}</p>
-      <p>Pages: ${book.pages}</p>
-      <p>Read: ${book.read ? "Yes" : "No"}</p>
-    </div>`;
+        <h1>${book.name}</h1>
+        <p>Author: ${book.author}</p>
+        <p>Pages: ${book.pages}</p>
+        <p>Read: ${book.read ? "Yes" : "No"}</p>
+        <button data-index="${index}" class="remove-button">Remove</button>
+        <button data-index="${index}" class="toggle-read-button">Toggle Read Status</button>
+      </div>`;
 
     cards.innerHTML += cardhtml;
   });
+  const removeBtns = document.querySelectorAll('.remove-button');
+  const readBtns = document.querySelectorAll('.toggle-read-button');
+  removeBtns.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const index = e.target.getAttribute("data-index");
+      books.splice(index, 1);
+      updateCards();
+    });
+  });
+  readBtns.forEach((button)=>{
+    button.addEventListener('click',(e)=>{
+      const index = e.target.getAttribute('data-index');
+      console.log(books[index].read);
+      books[index].read = !books[index].read;
+      updateCards();
+    })
+  })
 }
 
 function clearForm() {
