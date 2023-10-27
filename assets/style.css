@@ -150,6 +150,7 @@ body {
   grid-template-rows: 1fr 6fr;
   height: 100%;
   margin: 0 5%;
+  transition:0.2s ease-in;
 }
 
 .header > ul {
@@ -279,15 +280,14 @@ h3 {
   background: rgb(186, 34, 206);
 }
 
-/* CSS for styling cards */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   width: 60%;
 }
 .card {
   height: 300px;
-  border-radius: 8px;
+  border-radius: 18px;
   padding: 16px;
   margin: 10px;
   background-color: #81287b;
@@ -296,12 +296,12 @@ h3 {
 }
 
 .card h1 {
-  font-size: 20px;
+  font-size: 50px;
   font-weight: bold;
   margin-bottom: 8px;
 }
 
-/* Style for the checkbox */
+
 input[type="checkbox"] {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -316,15 +316,15 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-  background-color: #007bff; /* Color when checked */
-  border-color: #007bff; /* Border color when checked */
+  background-color: #007bff;
+  border-color: #007bff; 
 }
 
-/* Checkbox checkmark */
+
 input[type="checkbox"]::before {
-  content: "\2713"; /* Checkmark symbol */
+  content: "\2713";
   font-size: 16px;
-  color: #fff; /* Color of the checkmark when checked */
+  color: #fff; 
   position: absolute;
   top: 50%;
   left: 50%;
@@ -334,17 +334,16 @@ input[type="checkbox"]::before {
 }
 
 input[type="checkbox"]:checked::before {
-  opacity: 1; /* Show the checkmark when checked */
+  opacity: 1;
 }
 
-/* Label styling for the checkbox */
+
 label {
   display: flex;
   align-items: center;
   user-select: none;
 }
 
-/* Optional: Increase the label's margin for better spacing */
 label {
   margin-left: 10px;
 }
@@ -356,4 +355,54 @@ label {
 .hidden {
   transition: 0.3s ease-in-out;
   display: none;
+}
+
+
+.pointer{
+  cursor: pointer;
+}
+
+
+.card{
+  width:300px;
+  display: flex;
+  flex-direction:column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  justify-content: space-between;
+  padding:40px 40px;
+  font-weight:600;
+  color:darksalmon;
+}
+
+.card-btn{
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-header{
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+
+
+.card button{
+  border: none;
+  color:white;
+  border-radius: 30px;
+  padding:10px 20px;
+}
+
+.remove-button{
+  background-color: brown;
+
+}
+.toggle-read-button{
+  background-color: darkorchid;
+}
+
+.blur{
+  filter: grayscale(100%) opacity(30%);
+  transition: 0.3s ease-out;
 }

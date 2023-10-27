@@ -20,6 +20,7 @@ function addBookToLibrary(title, author, pages, read) {
 add.addEventListener("click", () => {
   modal.classList.toggle("hidden");
   document.querySelector(".cards").classList.toggle("hidden");
+  document.querySelector(".container").classList.toggle("blur");
   add.textContent = add.textContent === "+" ? "-" : "+";
   clearForm();
 });
@@ -48,18 +49,20 @@ function updateCards() {
   cards.innerHTML = "";
   books.forEach((book, index) => {
     const cardhtml = `<div class="card">
-        <h1>${book.name}</h1>
+        <h1 class="card-header">${book.name}</h1>
         <p>Author: ${book.author}</p>
         <p>Pages: ${book.pages}</p>
         <p>Read: ${book.read ? "Yes" : "No"}</p>
+        <div class="card-btn">
         <button data-index="${index}" class="remove-button">Remove</button>
-        <button data-index="${index}" class="toggle-read-button">Toggle Read Status</button>
+        <button data-index="${index}" class="toggle-read-button">Toggle Read Status</button>\
+        </div>
       </div>`;
 
     cards.innerHTML += cardhtml;
   });
-  const removeBtns = document.querySelectorAll('.remove-button');
-  const readBtns = document.querySelectorAll('.toggle-read-button');
+  const removeBtns = document.querySelectorAll(".remove-button");
+  const readBtns = document.querySelectorAll(".toggle-read-button");
   removeBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
       const index = e.target.getAttribute("data-index");
@@ -67,14 +70,14 @@ function updateCards() {
       updateCards();
     });
   });
-  readBtns.forEach((button)=>{
-    button.addEventListener('click',(e)=>{
-      const index = e.target.getAttribute('data-index');
+  readBtns.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const index = e.target.getAttribute("data-index");
       console.log(books[index].read);
       books[index].read = !books[index].read;
       updateCards();
-    })
-  })
+    });
+  });
 }
 
 function clearForm() {
