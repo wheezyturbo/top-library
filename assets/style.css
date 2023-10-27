@@ -406,3 +406,68 @@ label {
   filter: grayscale(100%) opacity(30%);
   transition: 0.3s ease-out;
 }
+
+/* media query */
+
+
+@media only screen and (max-width: 600px) {
+  .container{
+    display:flex;
+    flex-direction: column;
+    margin:0px;
+    margin-left:10%;
+  }
+  .header ul{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+  }
+  .header ul li:nth-child(1){
+    width:100%;
+  }
+  .header ul .ml{
+    margin-left: auto;
+    margin-bottom:10px;
+    width:100vw;
+    justify-content: flex-start;
+  }
+  .header ul .ml img{
+    display:none;
+  }
+  body{
+    width:100vw;
+  }
+  .modal {
+    position: absolute;
+    z-index: 9;
+    top: 20vh;
+    left:7%;
+    transition: 0.3s ease-in;
+  }
+  
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+  }
+  .input{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .cards{
+    margin-top:20px;
+  }
+  .card{
+    width:200px;
+    height:200px;
+  }
+  .btn-add{
+    margin-top: auto;
+    position:absolute;
+    bottom:5%;
+    right:5%;
+  }
+  .blur{
+    filter: opacity(50%);
+  }
+}
