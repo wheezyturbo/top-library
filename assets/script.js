@@ -4,18 +4,23 @@ const modal = document.querySelector(".modal");
 const formadd = document.querySelector(".modal-btn");
 const cards = document.querySelector(".cards");
 
-const books = [];
+class Book {
+  constructor(name = "Untitled", author = "Unknown", pages = 0, read = false) {
+    this.name = name;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+}
 
-function book(name, author, pages, read) {
-  this.name = name;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Library {
+  static books = [];
+  static add(book){
+    this.books.push(book);
+  }
 }
-function addBookToLibrary(title, author, pages, read) {
-  const newBook = new book(title, author, pages, read);
-  books.push(newBook);
-}
+
+
 
 add.addEventListener("click", () => {
   modal.classList.toggle("hidden");
@@ -40,14 +45,14 @@ formadd.addEventListener("click", (e) => {
   }
   nameInput.placeholder = "";
 
-  addBookToLibrary(name, author, pages, read);
+  Library.add(new Book(name, author, pages, read));
   updateCards();
   clearForm();
 });
 
 function updateCards() {
   cards.innerHTML = "";
-  books.forEach((book, index) => {
+  Library.books.forEach((book, index) => {
     const cardhtml = `<div class="card">
         <h1 class="card-header">${book.name}</h1>
         <p>Author: ${book.author}</p>
@@ -66,15 +71,15 @@ function updateCards() {
   removeBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
       const index = e.target.getAttribute("data-index");
-      books.splice(index, 1);
+      Library.books.splice(index, 1);
       updateCards();
     });
   });
   readBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
       const index = e.target.getAttribute("data-index");
-      console.log(books[index].read);
-      books[index].read = !books[index].read;
+      console.log(Library.books[index].read);
+      Library.books[index].read = !Library.books[index].read;
       updateCards();
     });
   });
